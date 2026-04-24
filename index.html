@@ -7,29 +7,22 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
-    --electric:#6C63FF;
-    --coral:#FF6B6B;
-    --cyan:#00D4FF;
-    --gold:#FFD93D;
-    --dark:#0A0A0F;
-    --card:#12121A;
-    --border:#2A2A3A;
-    --text:#E8E8F0;
-    --muted:#888899;
+    --electric:#6C63FF;--coral:#FF6B6B;--cyan:#00D4FF;--gold:#FFD93D;
+    --dark:#0A0A0F;--card:#12121A;--border:#2A2A3A;--text:#E8E8F0;--muted:#888899;
   }
   body{background:var(--dark);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;overflow-x:hidden}
   a{color:inherit;text-decoration:none}
   nav{position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:rgba(10,10,15,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
   .logo{font-size:1.2rem;font-weight:700;background:linear-gradient(90deg,var(--electric),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .nav-links{display:flex;gap:1.5rem}
-  .nav-links a{color:var(--muted);font-size:.9rem;transition:color .2s}
+  .nav-links{display:flex;gap:1.5rem;flex-wrap:wrap}
+  .nav-links a{color:var(--muted);font-size:.85rem;transition:color .2s}
   .nav-links a:hover{color:var(--text)}
   .hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:4rem 2rem;position:relative;overflow:hidden}
   .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(108,99,255,.25),transparent);pointer-events:none}
   .hero-badge{display:inline-block;padding:.4rem 1.2rem;border:1px solid var(--electric);border-radius:999px;font-size:.8rem;color:var(--electric);margin-bottom:1.5rem;letter-spacing:.1em}
   .hero h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:800;line-height:1.1;margin-bottom:1rem}
   .hero h1 span{background:linear-gradient(135deg,var(--electric),var(--cyan),var(--coral));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-  .hero p{font-size:1.2rem;color:var(--muted);max-width:580px;margin-bottom:2.5rem;line-height:1.7}
+  .hero p{font-size:1.15rem;color:var(--muted);max-width:620px;margin-bottom:2.5rem;line-height:1.7}
   .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
   .btn-primary{padding:.75rem 2rem;background:linear-gradient(135deg,var(--electric),var(--cyan));border:none;border-radius:8px;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,opacity .2s}
   .btn-primary:hover{transform:translateY(-2px);opacity:.9}
@@ -45,14 +38,42 @@
   .skill.cyan{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.08)}
   .skill.coral{border-color:var(--coral);color:var(--coral);background:rgba(255,107,107,.08)}
   .skill.gold{border-color:var(--gold);color:var(--gold);background:rgba(255,217,61,.08)}
-  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem}
-  .project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color .3s,transform .3s}
-  .project-card:hover{border-color:var(--electric);transform:translateY(-4px)}
-  .project-icon{width:3rem;height:3rem;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
-  .project-card h3{font-size:1.1rem;font-weight:600;margin-bottom:.5rem}
-  .project-card p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:1.25rem}
-  .project-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;transition:border-color .3s,transform .3s}
+  .card:hover{border-color:var(--electric);transform:translateY(-4px)}
+  .card-icon{width:3rem;height:3rem;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.25rem}
+  .card h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem}
+  .card p{color:var(--muted);font-size:.875rem;line-height:1.6;margin-bottom:1.1rem}
+  .tags{display:flex;flex-wrap:wrap;gap:.5rem}
   .tag{padding:.25rem .7rem;background:rgba(108,99,255,.12);border:1px solid rgba(108,99,255,.3);border-radius:6px;font-size:.75rem;color:var(--electric)}
+
+  /* EXPERIENCE TIMELINE */
+  .timeline{position:relative;padding-left:2rem}
+  .timeline::before{content:'';position:absolute;left:.5rem;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--electric),var(--cyan),transparent)}
+  .timeline-item{position:relative;margin-bottom:2.5rem}
+  .timeline-item::before{content:'';position:absolute;left:-1.6rem;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--electric);border:2px solid var(--dark);box-shadow:0 0 8px rgba(108,99,255,.6)}
+  .tl-date{font-size:.78rem;color:var(--electric);letter-spacing:.08em;margin-bottom:.3rem}
+  .tl-role{font-size:1.05rem;font-weight:700;margin-bottom:.15rem}
+  .tl-company{font-size:.9rem;color:var(--cyan);margin-bottom:.75rem}
+  .tl-points{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+  .tl-points li{color:var(--muted);font-size:.875rem;line-height:1.6;padding-left:1.2rem;position:relative}
+  .tl-points li::before{content:'▸';position:absolute;left:0;color:var(--electric)}
+
+  /* CERTIFICATIONS */
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+  .cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color .3s,transform .3s}
+  .cert-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+  .cert-badge{font-size:1.75rem;flex-shrink:0}
+  .cert-card h4{font-size:.9rem;font-weight:600;line-height:1.4;margin-bottom:.25rem}
+  .cert-card p{font-size:.78rem;color:var(--gold)}
+
+  /* INDUSTRIES */
+  .ind-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem}
+  .ind-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem;transition:border-color .3s,transform .3s}
+  .ind-card:hover{border-color:var(--electric);transform:translateY(-3px)}
+  .ind-card h3{font-size:.95rem;font-weight:600;margin-bottom:.2rem}
+  .ind-card p{font-size:.8rem;color:var(--muted)}
+
   .contact-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
   .contact-link{display:flex;align-items:center;gap:.6rem;padding:.7rem 1.4rem;border:1px solid var(--border);border-radius:10px;font-size:.9rem;color:var(--muted);transition:all .2s}
   .contact-link:hover{border-color:var(--electric);color:var(--electric);transform:translateY(-2px)}
@@ -90,92 +111,249 @@
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#expertise">Expertise</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
     <a href="#industries">Industries</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">Supply Chain · Digital Transformation</div>
+  <div class="hero-badge">14+ Years · Oracle Supply Chain · Digital Transformation</div>
   <h1>Hi, I'm <span>Vibhu Parashar</span></h1>
-  <p>I help organizations modernize their supply chains — turning complexity into competitive advantage through smart technology and strategic consulting.</p>
+  <p>Supply Chain Management Consultant specializing in Oracle Cloud — helping organizations across industries transform their planning, manufacturing, and operations for the digital age.</p>
   <div class="hero-btns">
     <button class="btn-primary" onclick="openChat()">Chat with Me ✦</button>
     <button class="btn-ghost" onclick="document.getElementById('expertise').scrollIntoView({behavior:'smooth'})">My Expertise</button>
   </div>
 </div>
 
+<!-- ABOUT -->
 <section id="about">
   <div class="section-label">About me</div>
-  <div class="section-title">Consultant. Strategist. Transformation Partner.</div>
+  <div class="section-title">Consultant. Strategist. Oracle Expert.</div>
   <div class="divider"></div>
-  <p style="color:var(--muted);line-height:1.8;max-width:680px;font-size:1.05rem">
+  <p style="color:var(--muted);line-height:1.8;max-width:720px;font-size:1.05rem">
     I'm an experienced Supply Chain Consultant who partners with clients to navigate complex digital transformation journeys. From legacy system modernization to AI-driven logistics optimization, I bring both strategic vision and hands-on execution to every engagement — helping organizations build supply chains that are resilient, efficient, and future-ready.
   </p>
   <div class="skills-grid">
-    <span class="skill blue">Digital Transformation</span>
-    <span class="skill blue">Supply Chain Strategy</span>
-    <span class="skill cyan">ERP Implementation</span>
-    <span class="skill cyan">Process Optimization</span>
-    <span class="skill coral">Demand Planning</span>
-    <span class="skill coral">Inventory Management</span>
-    <span class="skill gold">Logistics & 3PL</span>
-    <span class="skill gold">Data & Analytics</span>
-    <span class="skill blue">Change Management</span>
+    <span class="skill blue">Oracle Cloud SCM</span>
+    <span class="skill blue">Supply Chain Planning</span>
     <span class="skill cyan">S&OP</span>
+    <span class="skill cyan">ERP Implementation</span>
+    <span class="skill coral">Manufacturing</span>
+    <span class="skill coral">Maintenance</span>
+    <span class="skill gold">Inventory Management</span>
+    <span class="skill gold">Order Management</span>
+    <span class="skill blue">Cost Management</span>
+    <span class="skill cyan">Procurement</span>
   </div>
 </section>
 
+<!-- EXPERTISE -->
 <section id="expertise">
   <div class="section-label">Expertise</div>
   <div class="section-title">How I Help Clients</div>
   <div class="divider"></div>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-icon" style="background:rgba(108,99,255,.15)">📦</div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon" style="background:rgba(108,99,255,.15)">📦</div>
       <h3>Supply Chain Planning</h3>
       <p>Designing end-to-end planning frameworks — from demand sensing and S&OP to network optimization — that drive agility and reduce supply risk.</p>
-      <div class="project-tags"><span class="tag">S&OP</span><span class="tag">Demand Planning</span><span class="tag">Network Design</span></div>
+      <div class="tags"><span class="tag">S&OP</span><span class="tag">Demand Planning</span><span class="tag">Oracle SCP</span></div>
     </div>
-    <div class="project-card">
-      <div class="project-icon" style="background:rgba(0,212,255,.1)">🏭</div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(0,212,255,.1)">🏭</div>
       <h3>Manufacturing & Maintenance</h3>
       <p>Helping manufacturers digitize operations, improve asset reliability, and streamline maintenance workflows to maximize uptime and output quality.</p>
-      <div class="project-tags"><span class="tag">MES</span><span class="tag">Predictive Maintenance</span><span class="tag">Lean Ops</span></div>
+      <div class="tags"><span class="tag">Oracle Mfg Cloud</span><span class="tag">Predictive Maintenance</span><span class="tag">Lean Ops</span></div>
     </div>
-    <div class="project-card">
-      <div class="project-icon" style="background:rgba(255,107,107,.1)">📊</div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(255,107,107,.1)">📊</div>
       <h3>Inventory Management</h3>
       <p>Optimizing stock levels, reducing carrying costs, and building real-time visibility across multi-echelon inventory networks to eliminate waste.</p>
-      <div class="project-tags"><span class="tag">Multi-Echelon</span><span class="tag">Safety Stock</span><span class="tag">ERP Integration</span></div>
+      <div class="tags"><span class="tag">Multi-Echelon</span><span class="tag">Safety Stock</span><span class="tag">ERP Integration</span></div>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:rgba(255,217,61,.1)">🔍</div>
+      <h3>ERP Platform Comparison</h3>
+      <p>Helping clients evaluate, shortlist, and select the right ERP platform — with unbiased, side-by-side analysis of fit, cost, and scalability.</p>
+      <div class="tags"><span class="tag">SAP</span><span class="tag">Oracle</span><span class="tag">MS D365</span><span class="tag">Vendor Selection</span></div>
     </div>
   </div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work Experience</div>
+  <div class="section-title">Professional Journey</div>
+  <div class="divider"></div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="tl-date">May 2024 – Present</div>
+      <div class="tl-role">Consulting Manager</div>
+      <div class="tl-company">Accenture</div>
+      <ul class="tl-points">
+        <li>Offshore lead for Supply Chain Execution Track for the world's largest berry company (agri-produce industry)</li>
+        <li>Designed and deployed integrations between Oracle Fusion/OTM and boundary applications (Anaplan / In-house Grower app)</li>
+        <li>Designed and deployed Oracle extension (Harvest Planner Workbench & PAB Dashboards) to enrich the Oracle Supply Chain Planning solution</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">April 2019 – May 2024</div>
+      <div class="tl-role">Associate Director</div>
+      <div class="tl-company">Deloitte</div>
+      <ul class="tl-points">
+        <li>Manufacturing track lead implementing Oracle Cloud for a Metal & Mining client — the largest Process Manufacturing Oracle client in Asia by user license count</li>
+        <li>Plan to Produce track lead implementing Oracle EBS Process Manufacturing for the world's largest aluminum rolling company</li>
+        <li>Successfully converted 3 project proposals from an SCM solutioning standpoint</li>
+        <li>Monitored staff performance and developed team improvement plans</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">July 2017 – April 2019</div>
+      <div class="tl-role">Lead Consultant</div>
+      <div class="tl-company">Genpact (Rebadged from Birlasoft)</div>
+      <ul class="tl-points">
+        <li>Worked as Order to Cash consultant (Oracle Cloud) to support rollout of global design across geographies</li>
+        <li>Designed & deployed enhancements for client dealing with Service items, Subscriptions & Shippable items in collaboration with business SMEs</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">February 2015 – July 2017</div>
+      <div class="tl-role">Consultant</div>
+      <div class="tl-company">Birlasoft</div>
+      <ul class="tl-points">
+        <li>Designed and deployed a custom solution to automate internal material transfers for a top aircraft engine supplier (aviation segment)</li>
+        <li>Integrated information flow to and from Oracle and legacy systems based on planning outcomes and business rules</li>
+        <li>Worked as Value Chain Planning consultant to support complex and integrated planning architecture during R12 Upgrade</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">May 2011 – February 2015</div>
+      <div class="tl-role">Senior Associate Consultant</div>
+      <div class="tl-company">Infosys</div>
+      <ul class="tl-points">
+        <li>Onsite consultant for Demand to Release and Purchasing track, rolling out global solution for client's plants in China (Ba'oan & Tianjin)</li>
+        <li>Performed configuration setup, data migration and collaborated on design & delivery of custom solutions</li>
+      </ul>
+    </div>
+    <div class="timeline-item">
+      <div class="tl-date">December 2007 – March 2009</div>
+      <div class="tl-role">Programmer Analyst</div>
+      <div class="tl-company">Cognizant</div>
+      <ul class="tl-points">
+        <li>Worked in the testing domain for Lloyds Bank's internet banking division (UK)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">Certifications</div>
+  <div class="section-title">Oracle Cloud Certified</div>
+  <div class="divider"></div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-badge">📋</div>
+      <div>
+        <h4>Oracle Order Management Cloud 2024</h4>
+        <p>Implementation Essentials</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">🏭</div>
+      <div>
+        <h4>Oracle Manufacturing Cloud 2024</h4>
+        <p>Implementation Essentials</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">🔧</div>
+      <div>
+        <h4>Oracle Maintenance Cloud 2024</h4>
+        <p>Implementation Essentials</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-badge">💰</div>
+      <div>
+        <h4>Oracle Cost Management Cloud 2024</h4>
+        <p>Implementation Essentials</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AWARDS -->
+  <div style="margin-top:3rem">
+    <div class="section-label">Recognition</div>
+    <div class="section-title" style="font-size:1.5rem">Awards & Honours</div>
+    <div class="divider"></div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-badge">🏆</div>
+        <div>
+          <h4>Champions of the Quarter 2024</h4>
+          <p style="color:var(--cyan)">Accenture — Client Value Creation</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge">🎖️</div>
+        <div>
+          <h4>President's Bonus FY22</h4>
+          <p style="color:var(--cyan)">Deloitte — Top 5% Exceptional Performance</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge">🚀</div>
+        <div>
+          <h4>SPRINT Leadership Program FY21</h4>
+          <p style="color:var(--cyan)">Deloitte — Leadership Development Nominee</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-badge">🏅</div>
+        <div>
+          <h4>Champions of the Quarter 2026</h4>
+          <p style="color:var(--cyan)">Accenture — Practice & Location Champion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
 <section id="industries">
   <div class="section-label">Industries</div>
   <div class="section-title">Industry Experience</div>
   <div class="divider"></div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem">
-    <div class="project-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem">
+  <div class="ind-grid">
+    <div class="ind-card">
       <div style="font-size:2rem">🌾</div>
-      <div><h3 style="font-size:1rem;margin-bottom:.25rem">Agri Produce</h3><p style="font-size:.85rem;margin:0">Farm-to-market supply chain & perishables logistics</p></div>
+      <div><h3>Agri Produce</h3><p>Farm-to-market supply chain & perishables logistics</p></div>
     </div>
-    <div class="project-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem">
+    <div class="ind-card">
       <div style="font-size:2rem">⛏️</div>
-      <div><h3 style="font-size:1rem;margin-bottom:.25rem">Metal & Mining</h3><p style="font-size:.85rem;margin:0">Raw material planning & heavy asset operations</p></div>
+      <div><h3>Metal & Mining</h3><p>Raw material planning & heavy asset operations</p></div>
     </div>
-    <div class="project-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem">
+    <div class="ind-card">
       <div style="font-size:2rem">💻</div>
-      <div><h3 style="font-size:1rem;margin-bottom:.25rem">Digital Products</h3><p style="font-size:.85rem;margin:0">Agile supply chains for tech & software-driven businesses</p></div>
+      <div><h3>Digital Products</h3><p>Agile supply chains for tech & software businesses</p></div>
     </div>
-    <div class="project-card" style="display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem">
+    <div class="ind-card">
       <div style="font-size:2rem">⚡</div>
-      <div><h3 style="font-size:1rem;margin-bottom:.25rem">Electrical Manufacturing</h3><p style="font-size:.85rem;margin:0">Component sourcing, BOM planning & factory optimization</p></div>
+      <div><h3>Electrical Manufacturing</h3><p>Component sourcing, BOM planning & factory optimization</p></div>
+    </div>
+    <div class="ind-card">
+      <div style="font-size:2rem">✈️</div>
+      <div><h3>Aviation</h3><p>Internal transfers automation for top aircraft engine suppliers</p></div>
     </div>
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="section-label">Contact</div>
   <div class="section-title">Let's Work Together</div>
@@ -203,7 +381,7 @@
     <button id="chat-close" onclick="closeChat()">✕</button>
   </div>
   <div id="chat-messages">
-    <div class="msg bot">Hey there! I'm Vibhu's AI twin. Ask me about my consulting approach, areas of expertise, or how I can help with your supply chain challenges. 👋</div>
+    <div class="msg bot">Hey there! I'm Vibhu's AI twin. Ask me about my consulting approach, Oracle expertise, industry experience, or how I can help with your supply chain challenges. 👋</div>
   </div>
   <div class="chat-input-row">
     <input id="chat-input" type="text" placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendMsg()">
@@ -212,19 +390,25 @@
 </div>
 
 <script>
-const PERSONA = `You are the AI twin of Vibhu Parashar, an experienced Supply Chain Consultant who helps clients navigate digital transformation journeys. You respond as Vibhu in first person — professional, warm, insightful, and confident.
+const PERSONA = `You are the AI twin of Vibhu Parashar, an experienced Supply Chain Management Consultant with 14+ years of experience. You respond as Vibhu in first person — professional, warm, confident, and deeply knowledgeable about Oracle SCM and supply chain transformation.
 
 About Vibhu:
-- Experienced Supply Chain Consultant specializing in digital transformation
-- Helps clients modernize supply chains: ERP implementations, cloud migrations, process redesign
-- Core expertise areas: Supply Chain Planning (S&OP, demand sensing, network design), Manufacturing & Maintenance (MES, predictive maintenance, lean operations), Inventory Management (multi-echelon optimization, safety stock, ERP integration)
-- Works with clients across industries to build resilient, efficient, future-ready supply chains
-- Brings both strategic vision and hands-on execution to every engagement
+- 14+ years of Supply Chain Management consulting experience
+- Primary expertise: Oracle Supply Chain Planning, Manufacturing, Inventory Management, Maintenance
+- Secondary expertise: Order Management, Cost Management, Procurement
+- Currently Consulting Manager at Accenture (May 2024–present)
+- Previously Associate Director at Deloitte (2019–2024), Lead Consultant at Genpact (2017–2019), Consultant at Birlasoft (2015–2017), Senior Associate Consultant at Infosys (2011–2015)
+- Oracle Cloud Certified in Order Management, Manufacturing, Maintenance, and Cost Management (all 2024)
+- Awards: Accenture Champions of the Quarter 2024, Deloitte President's Bonus FY22 (Top 5%), Deloitte SPRINT Leadership Program Nominee FY21
+- Industry experience: Agri Produce (world's largest berry company), Metal & Mining (largest Process Manufacturing Oracle client in Asia), Aviation (top aircraft engine supplier), Digital Products, Electrical Manufacturing
+- Education: MBA General Management from NMIMS Mumbai (2011), BE Mechanical from Bharati Vidyapeeth Pune (2007)
+- Based in Gurugram, India
+- Contact: vib4mech@gmail.com
+- LinkedIn: linkedin.com/in/vibhu-parashar-121b6a15
 
-Respond conversationally, concisely (2-4 sentences max), and warmly. Focus on demonstrating genuine expertise. If asked something specific you don't know, offer to connect over email for a deeper conversation.`;
+Respond conversationally, concisely (2-4 sentences max), and warmly. Demonstrate genuine Oracle SCM expertise. If asked something very specific you're unsure about, offer to connect over email.`;
 
 let history = [];
-
 function openChat(){document.getElementById('chat-panel').classList.add('open')}
 function closeChat(){document.getElementById('chat-panel').classList.remove('open')}
 
@@ -233,37 +417,26 @@ async function sendMsg(){
   const text = input.value.trim();
   if(!text) return;
   input.value = '';
-
   const msgs = document.getElementById('chat-messages');
-
   const uDiv = document.createElement('div');
   uDiv.className = 'msg user';
   uDiv.textContent = text;
   msgs.appendChild(uDiv);
-
   const typing = document.createElement('div');
   typing.className = 'msg bot typing';
   typing.innerHTML = '<span></span><span></span><span></span>';
   msgs.appendChild(typing);
   msgs.scrollTop = msgs.scrollHeight;
-
   history.push({role:'user', content: text});
-
   try {
     const res = await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        system: PERSONA,
-        messages: history
-      })
+      body: JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:PERSONA,messages:history})
     });
     const data = await res.json();
-    const reply = data.content?.[0]?.text || "Something went wrong — reach me at vibhu@example.com!";
+    const reply = data.content?.[0]?.text || "Something went wrong — reach me at vib4mech@gmail.com!";
     history.push({role:'assistant', content: reply});
-
     typing.remove();
     const bDiv = document.createElement('div');
     bDiv.className = 'msg bot';
@@ -274,7 +447,7 @@ async function sendMsg(){
     typing.remove();
     const err = document.createElement('div');
     err.className = 'msg bot';
-    err.textContent = "Oops, couldn't connect right now. Try emailing me at vib4mech@gmail.com!";
+    err.textContent = "Oops, couldn't connect. Try emailing me at vib4mech@gmail.com!";
     msgs.appendChild(err);
     msgs.scrollTop = msgs.scrollHeight;
   }
